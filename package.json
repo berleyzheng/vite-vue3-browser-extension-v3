@@ -49,7 +49,7 @@
     "webext-bridge": "^6.0.1",
     "webextension-polyfill": "^0.12.0"
   },
-  "displayName": "Berley's cat",
+  "displayName": "AwesomeCat",
   "name": "berleys-cat",
   "overrides": {
     "@crxjs/vite-plugin": "$@crxjs/vite-plugin"

@@ -71,7 +71,7 @@ export default defineConfig({
       globalSFCScope: true,
       compositionOnly: true,
     }),
-
+    // Vite 里开启了 unplugin-vue-router，把每个 UI 子应用的 pages 目录自动生成为路由。其中 side-panel 的页面目录映射为路径前缀 side-panel/。
     VueRouter({
       dts: "src/types/typed-router.d.ts",
       routesFolder: getImmediateDirectories("src/ui").map((dir) => ({

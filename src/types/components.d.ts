@@ -18,12 +18,12 @@ declare module 'vue' {
     TailwindEmptyState: typeof import('./../components/state/tailwind-empty-state.vue')['default']
     TestComponent: typeof import('./../components/TestComponent.vue')['default']
     ThemeSwitch: typeof import('./../components/ThemeSwitch.vue')['default']
-    UApp: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parser@7.28.4_embla-carousel@8.6.0_typescript@5.9.2_vite@7.1.7_@types+n_iqqmxjfy2c4chnwu4t6degbb4m/node_modules/@nuxt/ui/dist/runtime/components/App.vue')['default']
-    UButton: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parser@7.28.4_embla-carousel@8.6.0_typescript@5.9.2_vite@7.1.7_@types+n_iqqmxjfy2c4chnwu4t6degbb4m/node_modules/@nuxt/ui/dist/runtime/components/Button.vue')['default']
+    UApp: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parse_3c53d512834d14f110e8827ed1a4a45c/node_modules/@nuxt/ui/dist/runtime/components/App.vue')['default']
+    UButton: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parse_3c53d512834d14f110e8827ed1a4a45c/node_modules/@nuxt/ui/dist/runtime/components/Button.vue')['default']
     UCard: typeof import('./../../node_modules/@nuxt/ui/dist/runtime/components/Card.vue')['default']
-    UForm: typeof import('./../../node_modules/@nuxt/ui/dist/runtime/components/Form.vue')['default']
-    UFormField: typeof import('./../../node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
-    UInput: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parser@7.28.4_embla-carousel@8.6.0_typescript@5.9.2_vite@7.1.7_@types+n_iqqmxjfy2c4chnwu4t6degbb4m/node_modules/@nuxt/ui/dist/runtime/components/Input.vue')['default']
-    USwitch: typeof import('./../../node_modules/@nuxt/ui/dist/runtime/components/Switch.vue')['default']
+    UForm: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parse_3c53d512834d14f110e8827ed1a4a45c/node_modules/@nuxt/ui/dist/runtime/components/Form.vue')['default']
+    UFormField: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parse_3c53d512834d14f110e8827ed1a4a45c/node_modules/@nuxt/ui/dist/runtime/components/FormField.vue')['default']
+    UInput: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parse_3c53d512834d14f110e8827ed1a4a45c/node_modules/@nuxt/ui/dist/runtime/components/Input.vue')['default']
+    USwitch: typeof import('./../../node_modules/.pnpm/@nuxt+ui@3.3.5_@babel+parse_3c53d512834d14f110e8827ed1a4a45c/node_modules/@nuxt/ui/dist/runtime/components/Switch.vue')['default']
   }
 }

@@ -17,7 +17,9 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: fit-content;
 }
+
 
 .main-content {
   flex: 1;

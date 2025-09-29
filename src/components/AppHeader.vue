@@ -6,14 +6,14 @@
       to="/"
       class="flex gap-2 items-center"
     >
-      <!-- <img
+      <img
         src="@assets/logo_cat_mini.png"
         alt="logo"
         class="h-8 w-auto"
       />
       <div class="font-semibold text-primary">
         Berley's cat
-      </div> -->
+      </div>
     </RouterLink>
     <div class="flex gap-2 justify-center">
       <UButton
