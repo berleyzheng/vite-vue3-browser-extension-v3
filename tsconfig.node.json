@@ -14,7 +14,7 @@
     "baseUrl": "./",
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
       ],
       "~/*": [
         "./*"
@@ -28,7 +28,6 @@
     },
     "types": [
       "node",
-      "unplugin-icons/types/vue",
       "chrome-types",
       "@intlify/unplugin-vue-i18n/messages"
     ]

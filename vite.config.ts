@@ -4,17 +4,13 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 import vueDevTools from "vite-plugin-vue-devtools"
 import VueRouter from "unplugin-vue-router/vite"
-import AutoImport from "unplugin-auto-import/vite"
-import Components from "unplugin-vue-components/vite"
-import Icons from "unplugin-icons/vite"
-import IconsResolver from "unplugin-icons/resolver"
 import TurboConsole from "unplugin-turbo-console/vite"
 import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
-import tailwindcss from "@tailwindcss/vite"
+import ui from "@nuxt/ui/vite"
 import "dotenv/config"
 
 // @ts-expect-error commonjs module
-import { defineViteConfig as define } from "./define.config.mjs"
+import { define, raw } from "./define.config.mjs"
 import { dirname, relative, resolve } from "node:path"
 
 const IS_DEV = process.env.NODE_ENV === "development"
@@ -39,27 +35,19 @@ export default defineConfig({
         devtoolsPanel: resolve(__dirname, "src/ui/devtools-panel/index.html"),
       },
     },
-  },
-
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: (content, filePath) =>
-          filePath.includes("content-script/index.scss")
-            ? content
-            : `@use "/src/assets/base.scss";\n${content}`,
-      },
+    terserOptions: {
+      mangle: false,
     },
   },
 
   define,
 
-  legacy: {
-    // ⚠️ SECURITY RISK: Allows WebSockets to connect to the vite server without a token check ⚠️
-    // See https://github.com/crxjs/chrome-extension-tools/issues/971 for more info
-    // The linked issue gives a potential fix that @crxjs/vite-plugin could implement
-    skipWebSocketTokenCheck: true,
-  },
+  // legacy: {
+  //   // ⚠️ SECURITY RISK: Allows WebSockets to connect to the vite server without a token check ⚠️
+  //   // See https://github.com/crxjs/chrome-extension-tools/issues/971 for more info
+  //   // The linked issue gives a potential fix that @crxjs/vite-plugin could implement
+  //   skipWebSocketTokenCheck: true,
+  // },
 
   optimizeDeps: {
     include: ["vue", "@vueuse/core", "webextension-polyfill"],
@@ -94,46 +82,54 @@ export default defineConfig({
 
     vue(),
 
-    tailwindcss(),
-
-    TurboConsole(),
-
-    AutoImport({
-      imports: [
-        "vue",
-        "vue-router",
-        "pinia",
-        "@vueuse/core",
-        { "vue-router/auto": ["definePage"] },
-        { "vue-i18n": ["useI18n", "t"] },
-        {
-          "webextension-polyfill": [["=", "browser"]],
+    ui({
+      autoImport: {
+        imports: [
+          "vue",
+          "vue-router",
+          "pinia",
+          "@vueuse/core",
+          { "vue-router/auto": ["definePage"] },
+          { "vue-i18n": ["useI18n", "t"] },
+          {
+            "webextension-polyfill": [["=", "browser"]],
+          },
+        ],
+        dts: "src/types/auto-imports.d.ts",
+        dirs: ["src/composables/**", "src/stores/**", "src/utils/**"],
+        vueTemplate: true,
+        viteOptimizeDeps: true,
+        eslintrc: {
+          enabled: true,
+          filepath: "src/types/.eslintrc-auto-import.json",
         },
-        { notivue: ["Notivue", "Notification", ["push", "pushNotification"]] },
-      ],
-      dts: "src/types/auto-imports.d.ts",
-      dirs: ["src/composables/**", "src/stores/**", "src/utils/**"],
-      vueTemplate: true,
-      viteOptimizeDeps: true,
-      eslintrc: {
-        enabled: true,
-        filepath: "src/types/.eslintrc-auto-import.json",
+      },
+      components: {
+        dirs: ["src/components"],
+        dts: "src/types/components.d.ts",
+        directoryAsNamespace: true,
+        globalNamespaces: ["account", "state"],
+      },
+      ui: {
+        colors: {
+          primary: "green",
+          neutral: "slate",
+        },
       },
     }),
 
-    Components({
-      dirs: ["src/components"],
-      dts: "src/types/components.d.ts",
-      resolvers: [IconsResolver()],
-      directoryAsNamespace: true,
-      globalNamespaces: ["account", "state"],
-    }),
+    TurboConsole(),
 
-    Icons({
-      autoInstall: true,
-      compiler: "vue3",
-      scale: 1.5,
-    }),
+    {
+      name: "html-define-plugin",
+      enforce: "post",
+      transformIndexHtml(html) {
+        return html.replace(
+          /%+\s*(\w+)\s*%+/g,
+          (_, key) => raw[key] ?? `%${key}%`,
+        )
+      },
+    },
 
     // rewrite assets to use relative path
     {
@@ -151,25 +147,27 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL(".", import.meta.url)),
       "~": fileURLToPath(new URL(".", import.meta.url)),
+      "@": fileURLToPath(new URL("src", import.meta.url)),
       src: fileURLToPath(new URL("src", import.meta.url)),
       "@assets": fileURLToPath(new URL("src/assets", import.meta.url)),
     },
   },
-  server: {
-    port: PORT,
-    hmr: {
-      host: "localhost",
-    },
-    origin: `http://localhost:${PORT}`,
-    cors: {
-      origin: [
-        // ⚠️ SECURITY RISK: Allows any chrome-extension to access the vite server ⚠️
-        // See https://github.com/crxjs/chrome-extension-tools/issues/971 for more info
-        // I don't believe that the linked issue mentions a potential solution
-        /chrome-extension:\/\//,
-      ],
-    },
-  },
+
+  // server: {
+  //   port: PORT,
+  //   hmr: {
+  //     host: "localhost",
+  //     overlay: false,
+  //   },
+  //   origin: `http://localhost:${PORT}`,
+  //   cors: {
+  //     origin: [
+  //       // ⚠️ SECURITY RISK: Allows any chrome-extension to access the vite server ⚠️
+  //       // See https://github.com/crxjs/chrome-extension-tools/issues/971 for more info
+  //       // I don't believe that the linked issue mentions a potential solution
+  //       "chrome-extension://",
+  //     ],
+  //   },
+  // },
 })

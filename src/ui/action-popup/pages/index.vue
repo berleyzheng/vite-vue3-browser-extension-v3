@@ -11,59 +11,39 @@
           </p>
 
           <div class="flex gap-2 justify-center mb-4">
-            <RouterLink
+            <UButton
               to="/common/features"
-              class="btn btn-primary"
+              icon="ph:list-heart"
+              variant="subtle"
             >
-              <i-ph-list-heart />
               Features
-            </RouterLink>
-            <RouterLink
+            </UButton>
+            <UButton
               to="/common/pricing"
-              class="btn btn-primary"
+              icon="ph:presentation-chart"
+              variant="subtle"
             >
-              <i-ph-presentation-chart />
-              Pricing
-            </RouterLink>
+              Features
+            </UButton>
           </div>
 
-          <RouterLink
+          <UButton
             to="/common/account/login"
-            class="btn btn-secondary btn-lg"
+            icon="ph:rocket-launch"
+            size="xl"
           >
-            <i-ph-rocket-launch />
             Get Started Now
-          </RouterLink>
+          </UButton>
 
-          <br />
+          <div class="flex justify-evenly my-6">
+            <RouterLink to="/action-popup/playground">Playground</RouterLink>
 
-          <RouterLink
-            to="/action-popup/playground"
-            class="btn btn-link"
-          >
-            Playground
-          </RouterLink>
+            <a href="https://github.com/mubaidr/vite-vue3-browser-extension-v3">
+              Documentation
+            </a>
 
-          <a
-            class="btn btn-link"
-            href="https://github.com/mubaidr/vite-vue3-browser-extension-v3"
-          >
-            Documentation
-          </a>
-
-          <a
-            class="btn btn-link"
-            href="https://mubaidr.js.org"
-          >
-            Support
-          </a>
-          <!-- <div class="switch-container">
-          <span>开启悬浮对话框</span>
-          <label class="switch">
-            <input type="checkbox" v-model="isDialogEnabled" @change="toggleDialog">
-            <span class="slider round"></span>
-          </label>
-        </div> -->
+            <a href="https://mubaidr.js.org">Support</a>
+          </div>
         </div>
       </div>
     </div>
