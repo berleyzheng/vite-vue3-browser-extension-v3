@@ -26,6 +26,17 @@ chrome.runtime.onInstalled.addListener(async (opt) => {
   }
 })
 
+// 当用户点击扩展图标时，切换侧边栏状态
+chrome.action.onClicked.addListener((tab) => {
+  if (!tab.id) {
+    console.error("无法获取当前标签页的ID")
+    return
+  }
+
+  // 必须直接调用 open() 响应用户点击
+  chrome.sidePanel.open({ tabId: tab.id });
+});
+
 self.onerror = function (message, source, lineno, colno, error) {
   console.info("Error: " + message)
   console.info("Source: " + source)

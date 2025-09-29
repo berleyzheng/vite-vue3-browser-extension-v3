@@ -5,11 +5,9 @@
     <div class="hero">
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <h1>Hello there</h1>
+          <h1>Hello man!</h1>
           <p>
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            这是一个有用的工具，可以帮助你更好地管理你的浏览器。
           </p>
 
           <div class="flex gap-2 justify-center mb-4">
@@ -59,6 +57,13 @@
           >
             Support
           </a>
+          <!-- <div class="switch-container">
+          <span>开启悬浮对话框</span>
+          <label class="switch">
+            <input type="checkbox" v-model="isDialogEnabled" @change="toggleDialog">
+            <span class="slider round"></span>
+          </label>
+        </div> -->
         </div>
       </div>
     </div>

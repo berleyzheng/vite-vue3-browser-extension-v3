@@ -8,11 +8,11 @@
         class="flex gap-2 items-center"
       >
         <img
-          src="@assets/logo.png"
+          src="@assets/logo_cat_mini.png"
           alt="logo"
           class="h-8 w-auto"
         />
-        <div class="text-base font-semibold">Vite Vue 3 Chrome Extension</div>
+        <div class="text-base font-semibold">Berley's cat</div>
       </RouterLink>
     </div>
     <div class="flex-none">

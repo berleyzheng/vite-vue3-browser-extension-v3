@@ -12,7 +12,7 @@ const [major, minor, patch, label = "0"] = version
 
 export default {
   author: {
-    email: "mubaidr@gmail.com",
+    email: "zhengbli3@outlook.com",
   },
   name: env.mode === "staging" ? `[INTERNAL] ${name}` : displayName || name,
   description,
@@ -23,7 +23,7 @@ export default {
   manifest_version: 3,
   // key: '',
   action: {
-    default_popup: "src/ui/action-popup/index.html",
+    //default_popup: "src/ui/action-popup/index.html",
   },
   background: {
     service_worker: "src/background/index.ts",
@@ -55,9 +55,9 @@ export default {
     },
   ],
   icons: {
-    16: "src/assets/logo.png",
-    24: "src/assets/logo.png",
-    32: "src/assets/logo.png",
-    128: "src/assets/logo.png",
+    16: "src/assets/logo_cat_mini.png",
+    24: "src/assets/logo_cat_mini.png",
+    32: "src/assets/logo_cat_mini.png",
+    128: "src/assets/logo_cat_mini.png",
   },
 } as ManifestV3Export

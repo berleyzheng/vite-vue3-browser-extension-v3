@@ -3,10 +3,10 @@ import { Notivue, Notification } from 'notivue'
 </script>
 
 <template>
-  <div>
+  <div class="app-container">
     <AppHeader />
 
-    <div class="p-4 prose">
+    <div class="p-4 prose main-content">
       <RouterView />
     </div>
 
@@ -18,4 +18,14 @@ import { Notivue, Notification } from 'notivue'
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+</style>
